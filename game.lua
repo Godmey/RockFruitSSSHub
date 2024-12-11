@@ -360,6 +360,27 @@ task.spawn(function()
 end)
 
 
+task.spawn(function()
+    game:GetService("RunService").Stepped:Connect(function()
+        if _G.a2 and _G.Vegetables then
+            local hrp = game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
+            if hrp and not hrp:FindFirstChild("BodyClip") then
+                local noclip = Instance.new("BodyVelocity")
+                noclip.Name = "BodyClip"
+                noclip.Parent = hrp
+                noclip.MaxForce = Vector3.new(100000, 100000, 100000)
+                noclip.Velocity = Vector3.new(0, 0, 0)
+            end
+        else
+            local hrp = game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
+            if hrp and hrp:FindFirstChild("BodyClip") then
+                hrp.BodyClip:Destroy()
+            end
+        end
+    end)
+end)
+
+
 while task.wait() do
 for _, v in pairs(game:GetService("CoreGui").Aizawa.Background:GetChildren()) do
     if v:IsA("ImageLabel") then
@@ -397,23 +418,3 @@ while true do
     wait(1)
 end
 
-
-task.spawn(function()
-    game:GetService("RunService").Stepped:Connect(function()
-        if _G.a2 and _G.Vegetables then
-            local hrp = game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
-            if hrp and not hrp:FindFirstChild("BodyClip") then
-                local noclip = Instance.new("BodyVelocity")
-                noclip.Name = "BodyClip"
-                noclip.Parent = hrp
-                noclip.MaxForce = Vector3.new(100000, 100000, 100000)
-                noclip.Velocity = Vector3.new(0, 0, 0)
-            end
-        else
-            local hrp = game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
-            if hrp and hrp:FindFirstChild("BodyClip") then
-                hrp.BodyClip:Destroy()
-            end
-        end
-    end)
-end)

@@ -314,7 +314,7 @@ task.spawn(function()
         pcall(function()
             if _G.Vegetables then
               if game.Players.LocalPlayer.Backpack:FindFirstChild("Watering vegetables") or game.Players.LocalPlayer.Character:FindFirstChild("Watering vegetables") then
-                  game.Players.LocalPlayer.Character.Humanoid:EquipTool(game.Players.LocalPlayer.Backpack:FindFirstChild("Watering vegetables")); wait(1)
+                  game.Players.LocalPlayer.Character.Humanoid:EquipTool(game.Players.LocalPlayer.Backpack:FindFirstChild("Watering vegetables")); wait(0.3)
                     if game.Players.LocalPlayer.Backpack:FindFirstChild("Seeds Bag") then
                         for _, v in pairs(workspace.Interactable.Farm:GetDescendants()) do
                             if v:IsA("ProximityPrompt") and v.Enabled == true then

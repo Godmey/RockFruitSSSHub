@@ -309,12 +309,24 @@ task.spawn(function()
         end)
     end
 end)
+
+task.spawn(function()
+  while wait(1.5) do
+    pcall(function()
+      if _G.Vegetables then
+        if game.Players.LocalPlayer.Backpack:FindFirstChild("Watering vegetables") or game.Players.LocalPlayer.Character:FindFirstChild("Watering vegetables") then
+        game.Players.LocalPlayer.Character.Humanoid:EquipTool(game.Players.LocalPlayer.Backpack:FindFirstChild("Watering vegetables"))
+        end
+      end
+    end)
+  end
+end)
+
 task.spawn(function()
     while wait() do
         pcall(function()
             if _G.Vegetables then
               if game.Players.LocalPlayer.Backpack:FindFirstChild("Watering vegetables") or game.Players.LocalPlayer.Character:FindFirstChild("Watering vegetables") then
-                  game.Players.LocalPlayer.Character.Humanoid:EquipTool(game.Players.LocalPlayer.Backpack:FindFirstChild("Watering vegetables")); wait(0.3)
                     if game.Players.LocalPlayer.Backpack:FindFirstChild("Seeds Bag") then
                         for _, v in pairs(workspace.Interactable.Farm:GetDescendants()) do
                             if v:IsA("ProximityPrompt") and v.Enabled == true then
@@ -341,6 +353,7 @@ task.spawn(function()
         end)
     end
 end)
+
 task.spawn(function()
   local Tickwait = {equip = 0, attack = 0}
   while wait(0.1) do
@@ -357,27 +370,6 @@ task.spawn(function()
       end
     end)
   end
-end)
-
-
-task.spawn(function()
-    game:GetService("RunService").Stepped:Connect(function()
-        if _G.a2 and _G.Vegetables then
-            local hrp = game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
-            if hrp and not hrp:FindFirstChild("BodyClip") then
-                local noclip = Instance.new("BodyVelocity")
-                noclip.Name = "BodyClip"
-                noclip.Parent = hrp
-                noclip.MaxForce = Vector3.new(100000, 100000, 100000)
-                noclip.Velocity = Vector3.new(0, 0, 0)
-            end
-        else
-            local hrp = game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
-            if hrp and hrp:FindFirstChild("BodyClip") then
-                hrp.BodyClip:Destroy()
-            end
-        end
-    end)
 end)
 
 
@@ -418,3 +410,23 @@ while true do
     wait(1)
 end
 
+
+task.spawn(function()
+    game:GetService("RunService").Stepped:Connect(function()
+        if _G.a2 and _G.Vegetables then
+            local hrp = game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
+            if hrp and not hrp:FindFirstChild("BodyClip") then
+                local noclip = Instance.new("BodyVelocity")
+                noclip.Name = "BodyClip"
+                noclip.Parent = hrp
+                noclip.MaxForce = Vector3.new(100000, 100000, 100000)
+                noclip.Velocity = Vector3.new(0, 0, 0)
+            end
+        else
+            local hrp = game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
+            if hrp and hrp:FindFirstChild("BodyClip") then
+                hrp.BodyClip:Destroy()
+            end
+        end
+    end)
+end)
